@@ -4,13 +4,308 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Huella Carbono</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <nav> </nav>
-    <section> <p> </p></section>
-    <button> Calcular tu huella de carbono </button>
-    <form action="">Formulario</form>
-    <footer> </footer>
+    <nav><h1> CALCULADORA</h1></nav>
+    <section> <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, minus impedit voluptate consectetur iure maxime ex unde autem cum porro mollitia eaque, quos, non deserunt. Illum enim accusantium quae quam?</p></section>
+    <!-- Botón -->
+      <div class="text-center">
+        <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
+          Calcular Huella
+        </button>
+      </div>
+
+   <form class="space-y-8">
+      <!-- Datos personales -->
+      <section>
+        <h2 class="text-xl font-semibold mb-4">Datos Personales</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block mb-2">País</label>
+            <select class="w-full border rounded-lg p-2">
+              <option>Argentina</option>
+              <option>Brasil</option>
+              <option>Chile</option>
+              <option>Uruguay</option>
+              <option>Paraguay</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <!-- Botón -->
+      <div id="datosP" class="text-center">
+        <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
+          Siguiente
+        </button>
+      </div>
+          <div>
+            <label class="block mb-2">Nombre</label>
+            <input type="text" class="w-full border rounded-lg p-2" placeholder="Ingresa tu nombre">
+          </div>
+          <!-- Botón -->
+      <div id="Nombre" class="text-center">
+        <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
+         Siguiente
+        </button>
+      </div>
+          <div class="md:col-span-2">
+            <label class="block mb-2">Tipo de casa</label>
+            <select class="w-full border rounded-lg p-2">
+              <option>Casa</option>
+              <option>Departamento</option>
+              <option>Casa rural</option>
+              <option>Casilla rodante</option>
+              <option>Otra</option>
+            </select>
+          </div>
+        </div>
+      </section>
+      <div id="tipodeCasa" class="text-center">
+        <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
+         Siguiente
+        </button>
+      </div>
+
+      <!-- Transporte -->
+      <section>
+        <h2 class="text-xl font-semibold mb-4">Transporte</h2>
+        <div class="space-y-4">
+          <div>
+            <label class="block mb-2">Auto</label>
+            <div class="flex gap-2">
+              <select class="border rounded-lg p-2">
+                <option>Nafta</option>
+                <option>Gasoil</option>
+                <option>Eléctrico</option>
+              </select>
+              <input type="number" class="border rounded-lg p-2 w-1/2" placeholder="Km/semana" value="0">
+            </div>
+          </div>
+          <div>
+            <label class="block mb-2">Moto / Monopatín</label>
+            <div class="flex gap-2">
+              <select class="border rounded-lg p-2">
+                <option>Nafta</option>
+                <option>Eléctrico</option>
+              </select>
+              <input type="number" class="border rounded-lg p-2 w-1/2" placeholder="Km/semana" value="0">
+            </div>
+          </div>
+          <div>
+            <label class="block mb-2">Transporte público (km/semana)</label>
+            <input type="number" class="border rounded-lg p-2 w-full" placeholder="0">
+          </div>
+          <div>
+            <label class="block mb-2">Bicicleta / Caminar (km/semana)</label>
+            <input type="number" class="border rounded-lg p-2 w-full" placeholder="0">
+          </div>
+        </div>
+      </section>
+        <div id="Transporte" class="text-center">
+        <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
+         Siguiente
+        </button>
+      </div>
+      <!-- Viajes -->
+      <section>
+        <h2 class="text-xl font-semibold mb-4">Viajes</h2>
+        <div class="space-y-4">
+          <div>
+            <label class="block mb-2">¿Cuántos viajes hiciste en el último año?</label>
+            <input type="number" class="border rounded-lg p-2 w-full" placeholder="Número de viajes" required>
+          </div>
+          <div>
+            <label class="block mb-2">Selecciona tipo de vuelo</label>
+            <select class="w-full border rounded-lg p-2">
+              <option>Nacional corto (&lt; 1000 km)</option>
+              <option>Nacional largo (1000-3000 km)</option>
+              <option>Internacional (&lt; 5000 km)</option>
+              <option>Internacional largo (&gt; 5000 km)</option>
+            </select>
+          </div>
+        </div>
+      </section>
+      <div id="Viajes" class="text-center">
+        <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
+         Siguiente
+        </button>
+      </div>
+      <!-- Hábitos alimenticios -->
+      <section>
+        <h2 class="text-xl font-semibold mb-4">Hábitos Alimenticios</h2>
+        <div class="space-y-4">
+          <div>
+            <label class="block mb-2">¿Cuántas veces por semana consumes carnes rojas?</label>
+            <select class="w-full border rounded-lg p-2">
+              <option>Nunca</option>
+              <option>1 o 2</option>
+              <option>3 o 4</option>
+              <option>Más de 5</option>
+            </select>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block mb-2">¿Consumes productos lácteos?</label>
+              <select class="w-full border rounded-lg p-2">
+                <option>Sí</option>
+                <option>No</option>
+              </select>
+            </div>
+            <div>
+              <label class="block mb-2">¿Consumes frutas y verduras de temporada?</label>
+              <select class="w-full border rounded-lg p-2">
+                <option>Sí</option>
+                <option>No</option>
+              </select>
+            </div>
+            <div>
+              <label class="block mb-2">¿Consumes alimentos orgánicos/locales?</label>
+              <select class="w-full border rounded-lg p-2">
+                <option>Sí</option>
+                <option>No</option>
+              </select>
+            </div>
+            <div>
+              <label class="block mb-2">¿Consumes pescado?</label>
+              <select class="w-full border rounded-lg p-2">
+                <option>Nunca</option>
+                <option>1 a 2 veces</option>
+                <option>3 a 4 veces</option>
+                <option>5 o más</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div id="Alimentacion" class="text-center">
+        <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
+         Siguiente
+        </button>
+      </div>
+      <!-- Niños y mascotas -->
+      <section>
+        <h2 class="text-xl font-semibold mb-4">Niños y Mascotas</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block mb-2">¿Cuántos menores de edad viven contigo?</label>
+            <select class="w-full border rounded-lg p-2">
+              <option>0</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3 o más</option>
+            </select>
+          </div>
+          <div>
+            <label class="block mb-2">¿Cuántas mascotas tienes?</label>
+            <select class="w-full border rounded-lg p-2">
+              <option>0</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3 o más</option>
+            </select>
+          </div>
+        </div>
+      </section>
+      <div id="Mascotas" class="text-center">
+        <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
+         Siguiente
+        </button>
+      </div>
+      <!-- Consumo de energía -->
+      <section>
+        <h2 class="text-xl font-semibold mb-4">Consumo de Energía</h2>
+        <div class="space-y-4">
+          <div>
+            <label class="block mb-2">¿Cuál es tu consumo eléctrico mensual aprox? (kWh)</label>
+            <input type="number" class="w-full border rounded-lg p-2" placeholder="Ej: 200">
+          </div>
+          <div>
+            <label class="block mb-2">¿Qué tipo de calefacción usas?</label>
+            <select class="w-full border rounded-lg p-2">
+              <option>Gas natural</option>
+              <option>Eléctrica</option>
+              <option>Leña</option>
+              <option>Ninguna</option>
+            </select>
+          </div>
+        </div>
+      </section>
+      <div id="Energia" class="text-center">
+        <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
+         Siguiente
+        </button>
+      </div>
+      <!-- Basura -->
+      <section>
+        <h2 class="text-xl font-semibold mb-4">Basura</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block mb-2">¿Reciclas regularmente tus residuos?</label>
+            <select class="w-full border rounded-lg p-2">
+              <option>Sí</option>
+              <option>No</option>
+            </select>
+          </div>
+          <div>
+            <label class="block mb-2">¿Compras agua embotellada?</label>
+            <select class="w-full border rounded-lg p-2">
+              <option>Sí</option>
+              <option>No</option>
+            </select>
+          </div>
+        </div>
+      </section>
+      <div id="Basura" class="text-center">
+        <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
+         Siguiente
+        </button>
+      </div>
+      <!-- Ropa -->
+      <section>
+        <h2 class="text-xl font-semibold mb-4">Ropa</h2>
+        <label class="block mb-2">¿Compras ropa nueva cada mes?</label>
+        <select class="w-full border rounded-lg p-2">
+          <option>Sí</option>
+          <option>No</option>
+          <option>Pocas veces</option>
+          <option>Frecuentemente</option>
+        </select>
+      </section>
+      <div id="Ropa" class="text-center">
+        <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
+         Siguiente
+        </button>
+      </div>
+      <!-- Agua -->
+      <section>
+        <h2 class="text-xl font-semibold mb-4">Agua</h2>
+        <div class="space-y-4">
+          <div>
+            <label class="block mb-2">¿Cuántos minutos dura tu ducha diaria en promedio?</label>
+            <input type="number" class="w-full border rounded-lg p-2" placeholder="Ej: 10">
+          </div>
+          <div>
+            <label class="block mb-2">¿Utilizas el lavarropas o lavavajillas más de 3 veces por semana?</label>
+            <select class="w-full border rounded-lg p-2">
+              <option>Sí</option>
+              <option>No</option>
+            </select>
+          </div>
+          <div>
+            <label class="block mb-2">¿Dejas correr el agua mientras lavas platos o dientes?</label>
+            <select class="w-full border rounded-lg p-2">
+              <option>Sí</option>
+              <option>No</option>
+            </select>
+          </div>
+        </div>
+      </section>
+      <div id="Agua" class="text-center">
+        <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
+         Finalizar
+        </button>
+      </div>
+    <footer> @copy FRONTEND-CONEJERO/MORA </footer>
 
 </body>
 </html>
