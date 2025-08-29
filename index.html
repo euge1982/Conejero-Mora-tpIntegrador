@@ -8,32 +8,35 @@
 </head>
 <body>
     <nav class="text-center mb-8 py-4 bg-green-600 text-white font-bold text-2xl" id="nav">
-        <h1>CALCULADORA</h1>
+        <h1>CALCULA TU HUELLA👣</h1>
     </nav>
 
     <section class="mb-8 font-bold text-center " id="introduccion"> 
-        <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-            Nam, minus impedit voluptate consectetur iure maxime ex unde 
-            autem cum porro mollitia eaque, quos, non deserunt. 
-            Illum enim accusantium quae quam?
+        <p> Qué es la huella de carbono? <br>
+            La huella de carbono es la cantidad total de gases de efecto invernadero (GEI) que son emitidos directa o indirectamente por actividades humanas, expresada en toneladas de dióxido de carbono equivalente (tCO2e). <br>
+            Estos gases incluyen dióxido de carbono (CO2), metano (CH4), óxido nitroso (N2O) y otros GEI que contribuyen al calentamiento global y al cambio climático. <br>
+            La huella de carbono se utiliza para medir el impacto ambiental de individuos, organizaciones, productos y servicios, y es una herramienta importante para identificar áreas donde se pueden reducir las emisiones de GEI y mitigar el cambio climático.
         </p>
     </section>
 
-    <!-- Boton -->
+    <!-- Boton para calcular la huella -->
       <div class="text-center">
         <button id="botonCalcular" type="button" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
-            Calcular Huella
+          Calcular Huella
         </button>
       </div>
 
+    <!-- Formulario que se hara visible a medida que se necesite en el calculo-->
     <form class="space-y-8 " id="formulario">
 
       <!-- Datos personales -->
       <section id="datosPersonales" class="section hidden">
         <h2 class="text-xl font-semibold mb-4">
-            Datos Personales
+          Datos Personales
         </h2>
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Pais del usuario -->
           <div>
             <label class="block mb-2">País</label>
             <select class="w-full border rounded-lg p-2">
@@ -46,11 +49,13 @@
             </select>
           </div>
 
+          <!-- Nombre del usuario -->
           <div>
             <label class="block mb-2">Nombre</label>
-            <input type="text" class="w-full border rounded-lg p-2" placeholder="Ingresa tu nombre">
+            <input type="text" class="w-full border rounded-lg p-2" placeholder="Ingresa tu nombre" required>
           </div>
-       
+          
+          <!-- Tipo de casa del usuario -->
           <div class="md:col-span-2">
             <label class="block mb-2">Tipo de casa</label>
             <select class="w-full border rounded-lg p-2">
@@ -64,18 +69,15 @@
         </div>
       </section>
 
-      <!-- Botón 
-      <div id="datosPersonales" class="text-center hidden">
-          <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
-              Siguiente
-          </button>
-      </div>-->
-
       <!-- Transporte -->
       <section id="transporte" class="section hidden">
-        <h2 class="text-xl font-semibold mb-4">Transporte</h2>
+        <h2 class="text-xl font-semibold mb-4">
+          Transporte
+        </h2>
+        
         <div class="space-y-4">
           <div>
+            <!-- Tipo de auto y km por semana -->
             <label class="block mb-2">Auto</label>
             <div class="flex gap-2">
               <select class="border rounded-lg p-2">
@@ -86,6 +88,8 @@
               <input type="number" class="border rounded-lg p-2 w-1/2" placeholder="Km/semana" value="0">
             </div>
           </div>
+
+          <!-- Tipo de moto y km por semana -->
           <div>
             <label class="block mb-2">Moto / Monopatín</label>
             <div class="flex gap-2">
@@ -96,29 +100,28 @@
               <input type="number" class="border rounded-lg p-2 w-1/2" placeholder="Km/semana" value="0">
             </div>
           </div>
+
+          <!-- Transporte público y bicicleta/caminar -->
           <div>
             <label class="block mb-2">Transporte público (km/semana)</label>
-            <input type="number" class="border rounded-lg p-2 w-full" placeholder="0">
+            <input type="number" class="border rounded-lg p-2 w-full" placeholder="0" value="0">
           </div>
           <div>
             <label class="block mb-2">Bicicleta / Caminar (km/semana)</label>
-            <input type="number" class="border rounded-lg p-2 w-full" placeholder="0">
+            <input type="number" class="border rounded-lg p-2 w-full" placeholder="0" value="0">
           </div>
         </div>
       </section>
 
-      <!--  <div id="Transporte" class="text-center hidden">
-        <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
-         Siguiente
-        </button>
-      </div>-->
-
       <!-- Viajes -->
       <section id="viajes" class="section hidden">
-        <h2 class="text-xl font-semibold mb-4">Viajes</h2>
+        <h2 class="text-xl font-semibold mb-4">
+          Viajes
+        </h2>
+        
         <div class="space-y-4">
           <div>
-            <label class="block mb-2">¿Cuántos viajes hiciste en el último año?</label>
+            <label class="block mb-2">¿Cuántos viajes en avion hiciste en el último año?</label>
             <input type="number" class="border rounded-lg p-2 w-full" placeholder="Número de viajes" required>
           </div>
           <div>
@@ -132,17 +135,15 @@
           </div>
         </div>
       </section>
-      <!--
-      <div id="Viajes" class="text-center hidden">
-        <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
-         Siguiente
-        </button>
-      </div>-->
-      
+           
       <!-- Hábitos alimenticios -->
       <section id="alimentacion" class="section hidden">
-        <h2 class="text-xl font-semibold mb-4">Hábitos Alimenticios</h2>
+        <h2 class="text-xl font-semibold mb-4">
+          Hábitos Alimenticios
+        </h2>
+        
         <div class="space-y-4">
+          <!-- Preguntas sobre alimentación -->
           <div>
             <label class="block mb-2">¿Cuántas veces por semana consumes carnes rojas?</label>
             <select class="w-full border rounded-lg p-2">
@@ -186,17 +187,13 @@
           </div>
         </div>
       </section>
-
-      <!--
-      <div id="Alimentacion" class="text-center hidden">
-        <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
-         Siguiente
-        </button>
-      </div>-->
       
       <!-- Niños y mascotas -->
       <section id="ninosMascotas" class="section hidden">
-        <h2 class="text-xl font-semibold mb-4">Niños y Mascotas</h2>
+        <h2 class="text-xl font-semibold mb-4">
+          Niños y Mascotas
+        </h2>
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label class="block mb-2">¿Cuántos menores de edad viven contigo?</label>
@@ -218,13 +215,7 @@
           </div>
         </div>
       </section>
-      <!--
-      <div id="Mascotas" class="text-center hidden">
-        <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
-         Siguiente
-        </button>
-      </div>-->
-      
+     
       <!-- Consumo de energía -->
       <section id="energia" class=" section hidden">
         <h2 class="text-xl font-semibold mb-4">Consumo de Energía</h2>
@@ -244,13 +235,7 @@
           </div>
         </div>
       </section>
-      <!--
-      <div id="Energia" class="text-center hidden">
-        <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
-         Siguiente
-        </button>
-      </div>-->
-      
+           
       <!-- Basura -->
       <section id="basura" class="section hidden">
         <h2 class="text-xl font-semibold mb-4">Basura</h2>
@@ -271,13 +256,7 @@
           </div>
         </div>
       </section>
-      <!--
-      <div id="Basura" class="text-center hidden">
-        <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
-         Siguiente
-        </button>
-      </div>-->
-      
+         
       <!-- Ropa -->
       <section id="ropa" class="section hidden">
         <h2 class="text-xl font-semibold mb-4">Ropa</h2>
@@ -289,13 +268,7 @@
           <option>Frecuentemente</option>
         </select>
       </section>
-      <!--
-      <div id="Ropa" class="text-center hidden">
-        <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
-         Siguiente
-        </button>
-      </div>-->
-      
+          
       <!-- Agua -->
       <section class="section hidden" id="agua">
         <h2 class="text-xl font-semibold mb-4">Agua</h2>
@@ -321,16 +294,35 @@
         </div>
       </section>
 
-      <div id="divButton" class="text-center">
-        <button id="nextButton" type="submit" class=" hidden bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
+      <!-- Boton siguiente que se hara visible a medida que se necesite -->
+      <div id="divNextButton" class="text-center">
+        <button id="nextButton" type="button" class=" hidden bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
             Siguiente
         </button>
       </div>
+      
+        <!-- Boton atras que se hara visible a medida que se necesite -->
+      <div id="divBackButton" class="text-center">
+        <button id="backButton" type="button" class=" hidden bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
+            Atras
+        </button>
+      </div>
+
     </form>
 
+    <div id="resultado" class="hidden text-center mt-8">
+      <h2 class="text-2xl font-bold mb-4">Tu huella de carbono es:</h2>
+      <p id="huellaValor" class="text-xl mb-4"></p>
+      <p id="mensajePersonalizado" class="text-lg">bla bla bla</p>
+      <button id="reiniciarBtn" class="mt-4 bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
+        Reiniciar
+      </button>
+      
+    </div>
     <!-- Footer -->
     <footer class="text-center py-4 text-gray-600 text-sm font-semibold bg-green-400 mt-10" > @copy HUELLA DE CARBONO by CONEJERO-MORA </footer>
 
+    <!-- Script -->
     <script src="script.js"></script>
 </body>
 </html>
