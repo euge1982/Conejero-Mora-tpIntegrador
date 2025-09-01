@@ -11,6 +11,7 @@
         <h1>CALCULA TU HUELLA👣</h1>
     </nav>
 
+    <!-- Introduccion sobre la huella de carbono -->
     <section class="mb-8 font-bold text-center " id="introduccion"> 
         <p> Qué es la huella de carbono? <br>
             La huella de carbono es la cantidad total de gases de efecto invernadero (GEI) que son emitidos directa o indirectamente por actividades humanas, expresada en toneladas de dióxido de carbono equivalente (tCO2e). <br>
@@ -39,7 +40,7 @@
           <!-- Pais del usuario -->
           <div>
             <label class="block mb-2">País</label>
-            <select class="w-full border rounded-lg p-2">
+            <select class="w-full border rounded-lg p-2" id="pais">
               <option>Argentina</option>
               <option>Brasil</option>
               <option>Chile</option>
@@ -52,13 +53,13 @@
           <!-- Nombre del usuario -->
           <div>
             <label class="block mb-2">Nombre</label>
-            <input type="text" class="w-full border rounded-lg p-2" placeholder="Ingresa tu nombre" required>
+            <input type="text" class="w-full border rounded-lg p-2" placeholder="Ingresa tu nombre" name="nombre" required>
           </div>
           
           <!-- Tipo de casa del usuario -->
           <div class="md:col-span-2">
             <label class="block mb-2">Tipo de casa</label>
-            <select class="w-full border rounded-lg p-2">
+            <select class="w-full border rounded-lg p-2" name="tipoCasa">
               <option>Casa</option>
               <option>Departamento</option>
               <option>Casa rural</option>
@@ -76,16 +77,18 @@
         </h2>
         
         <div class="space-y-4">
-          <div>
+          <div class="flex gap-2">
             <!-- Tipo de auto y km por semana -->
             <label class="block mb-2">Auto</label>
+            
             <div class="flex gap-2">
-              <select class="border rounded-lg p-2">
+              <select class="border rounded-lg p-2" name="auto">
                 <option>Nafta</option>
                 <option>Gasoil</option>
                 <option>Eléctrico</option>
               </select>
-              <input type="number" class="border rounded-lg p-2 w-1/2" placeholder="Km/semana" value="0">
+              <label class="block mb-2">km/semana</label>
+              <input type="number" class="border rounded-lg p-2 w-1/2" placeholder="Km/semana" name="kmAuto" value="0">
             </div>
           </div>
 
@@ -93,22 +96,23 @@
           <div>
             <label class="block mb-2">Moto / Monopatín</label>
             <div class="flex gap-2">
-              <select class="border rounded-lg p-2">
+              <select class="border rounded-lg p-2" name="moto/monopatin">
                 <option>Nafta</option>
                 <option>Eléctrico</option>
               </select>
-              <input type="number" class="border rounded-lg p-2 w-1/2" placeholder="Km/semana" value="0">
+              <label class="block mb-2">km/semana</label>
+              <input type="number" class="border rounded-lg p-2 w-1/2" placeholder="Km/semana" name="kmMotoMono" value="0">
             </div>
           </div>
 
           <!-- Transporte público y bicicleta/caminar -->
           <div>
             <label class="block mb-2">Transporte público (km/semana)</label>
-            <input type="number" class="border rounded-lg p-2 w-full" placeholder="0" value="0">
+            <input type="number" class="border rounded-lg p-2 w-full" placeholder="0" name="transportePublico" value="0">
           </div>
           <div>
             <label class="block mb-2">Bicicleta / Caminar (km/semana)</label>
-            <input type="number" class="border rounded-lg p-2 w-full" placeholder="0" value="0">
+            <input type="number" class="border rounded-lg p-2 w-full" placeholder="0" name="biciCaminar" value="0">
           </div>
         </div>
       </section>
@@ -122,11 +126,11 @@
         <div class="space-y-4">
           <div>
             <label class="block mb-2">¿Cuántos viajes en avion hiciste en el último año?</label>
-            <input type="number" class="border rounded-lg p-2 w-full" placeholder="Número de viajes" required>
+            <input type="number" class="border rounded-lg p-2 w-full" placeholder="Número de viajes" value="0" name="numeroViajes">
           </div>
           <div>
             <label class="block mb-2">Selecciona tipo de vuelo</label>
-            <select class="w-full border rounded-lg p-2">
+            <select class="w-full border rounded-lg p-2" name="tipoVuelo">
               <option>Nacional corto (&lt; 1000 km)</option>
               <option>Nacional largo (1000-3000 km)</option>
               <option>Internacional (&lt; 5000 km)</option>
@@ -146,7 +150,7 @@
           <!-- Preguntas sobre alimentación -->
           <div>
             <label class="block mb-2">¿Cuántas veces por semana consumes carnes rojas?</label>
-            <select class="w-full border rounded-lg p-2">
+            <select class="w-full border rounded-lg p-2" name="carnesRojas">
               <option>Nunca</option>
               <option>1 o 2</option>
               <option>3 o 4</option>
@@ -156,28 +160,28 @@
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label class="block mb-2">¿Consumes productos lácteos?</label>
-              <select class="w-full border rounded-lg p-2">
+              <select class="w-full border rounded-lg p-2" name="lacteos">
                 <option>Sí</option>
                 <option>No</option>
               </select>
             </div>
             <div>
               <label class="block mb-2">¿Consumes frutas y verduras de temporada?</label>
-              <select class="w-full border rounded-lg p-2">
+              <select class="w-full border rounded-lg p-2" name="frutasVerduras">
                 <option>Sí</option>
                 <option>No</option>
               </select>
             </div>
             <div>
               <label class="block mb-2">¿Consumes alimentos orgánicos/locales?</label>
-              <select class="w-full border rounded-lg p-2">
+              <select class="w-full border rounded-lg p-2" name="alimentosOrganicos">
                 <option>Sí</option>
                 <option>No</option>
               </select>
             </div>
             <div>
               <label class="block mb-2">¿Consumes pescado?</label>
-              <select class="w-full border rounded-lg p-2">
+              <select class="w-full border rounded-lg p-2" name="pescado">
                 <option>Nunca</option>
                 <option>1 a 2 veces</option>
                 <option>3 a 4 veces</option>
@@ -197,7 +201,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label class="block mb-2">¿Cuántos menores de edad viven contigo?</label>
-            <select class="w-full border rounded-lg p-2">
+            <select class="w-full border rounded-lg p-2" name="ninos">
               <option>0</option>
               <option>1</option>
               <option>2</option>
@@ -206,7 +210,7 @@
           </div>
           <div>
             <label class="block mb-2">¿Cuántas mascotas tienes?</label>
-            <select class="w-full border rounded-lg p-2">
+            <select class="w-full border rounded-lg p-2" name="mascotas">
               <option>0</option>
               <option>1</option>
               <option>2</option>
@@ -222,11 +226,11 @@
         <div class="space-y-4">
           <div>
             <label class="block mb-2">¿Cuál es tu consumo eléctrico mensual aprox? (kWh)</label>
-            <input type="number" class="w-full border rounded-lg p-2" placeholder="Ej: 200">
+            <input type="number" class="w-full border rounded-lg p-2" placeholder="Ej: 200" value="0" name="consumoElectrico">
           </div>
           <div>
             <label class="block mb-2">¿Qué tipo de calefacción usas?</label>
-            <select class="w-full border rounded-lg p-2">
+            <select class="w-full border rounded-lg p-2" name="calefaccion">
               <option>Gas natural</option>
               <option>Eléctrica</option>
               <option>Leña</option>
@@ -242,14 +246,14 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label class="block mb-2">¿Reciclas regularmente tus residuos?</label>
-            <select class="w-full border rounded-lg p-2">
+            <select class="w-full border rounded-lg p-2" name="reciclas">
               <option>Sí</option>
               <option>No</option>
             </select>
           </div>
           <div>
             <label class="block mb-2">¿Compras agua embotellada?</label>
-            <select class="w-full border rounded-lg p-2">
+            <select class="w-full border rounded-lg p-2" name="aguaEmbotellada">
               <option>Sí</option>
               <option>No</option>
             </select>
@@ -261,7 +265,7 @@
       <section id="ropa" class="section hidden">
         <h2 class="text-xl font-semibold mb-4">Ropa</h2>
         <label class="block mb-2">¿Compras ropa nueva cada mes?</label>
-        <select class="w-full border rounded-lg p-2">
+        <select class="w-full border rounded-lg p-2" name="ropaNueva">
           <option>Sí</option>
           <option>No</option>
           <option>Pocas veces</option>
@@ -275,18 +279,18 @@
         <div class="space-y-4">
           <div>
             <label class="block mb-2">¿Cuántos minutos dura tu ducha diaria en promedio?</label>
-            <input type="number" class="w-full border rounded-lg p-2" placeholder="Ej: 10">
+            <input type="number" class="w-full border rounded-lg p-2" placeholder="Ej: 10" name="minutosDucha" value="0">
           </div>
           <div>
             <label class="block mb-2">¿Utilizas el lavarropas o lavavajillas más de 3 veces por semana?</label>
-            <select class="w-full border rounded-lg p-2">
+            <select class="w-full border rounded-lg p-2" name="lavados">
               <option>Sí</option>
               <option>No</option>
             </select>
           </div>
           <div>
             <label class="block mb-2">¿Dejas correr el agua mientras lavas platos o dientes?</label>
-            <select class="w-full border rounded-lg p-2">
+            <select class="w-full border rounded-lg p-2" name="aguaCorriendo">
               <option>Sí</option>
               <option>No</option>
             </select>
@@ -311,7 +315,7 @@
     </form>
 
     <div id="resultado" class="hidden text-center mt-8">
-      <h2 class="text-2xl font-bold mb-4">Tu huella de carbono es:</h2>
+      <h2 class="text-2xl font-bold mb-4" id="huellaNombre"></h2>
       <p id="huellaValor" class="text-xl mb-4"></p>
       <p id="mensajePersonalizado" class="text-lg">bla bla bla</p>
       <button id="reiniciarBtn" class="mt-4 bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
@@ -324,5 +328,6 @@
 
     <!-- Script -->
     <script src="script.js"></script>
+
 </body>
 </html>
