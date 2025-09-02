@@ -1,46 +1,88 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Huella Carbono</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body>
-    <nav class="text-center mb-8 py-4 bg-green-600 text-white font-bold text-2xl" id="nav">
-        <h1>CALCULA TU HUELLA👣</h1>
-    </nav>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- importamos el css -->
+    <link rel="stylesheet" href="estilos.css">
+    
+    <!-- fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 
+  <title>Huella de Carbono</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!--configuracion para modo claro/oscuro-->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          container: { center: true, padding: '1rem' },
+        },
+      },
+    };
+  </script>
+  <!--Maneja el modo claro/oscuro cuando carga la pagina-->
+  <script>
+    (function () {
+      const saved = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (saved === 'dark' || (!saved && prefersDark)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
+</head>
+<body class="min-h-screen flex flex-col bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+  <!-- NAV -->
+  <header class="border-b border-gray-200 dark:border-gray-800 bg-green-600 text-white dark:bg-green-700">
+    <nav class="container max-w-5xl flex items-center justify-between py-3">
+      <h1 class="text-lg md:text-2xl font-extrabold tracking-wide">CALCULA TU HUELLA 👣</h1>
+      <div class="flex items-center gap-3">
+       
+        <!-- Boton para cambiar el modo-->
+        <button id="themeToggle" type="button" class="inline-flex items-center gap-2 rounded-xl bg-white/10 px-3 py-1.5 text-sm font-semibold ring-1 ring-white/20 hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-600 focus:ring-white">
+          <span class="hidden sm:inline" id="themeLabel">Oscuro</span>
+          <svg id="iconSun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-5 hidden dark:inline"><path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z"/><path fill-rule="evenodd" d="M12 2.25a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75Zm0 16.5a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0V19.5a.75.75 0 0 1 .75-.75Zm9-7.5a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5H20.25a.75.75 0 0 1 .75.75ZM6 12a.75.75 0 0 1-.75.75H3.75a.75.75 0 0 1 0-1.5H5.25A.75.75 0 0 1 6 12Zm12.364 6.364a.75.75 0 0 1-1.06 0l-1.06-1.06a.75.75 0 0 1 1.06-1.061l1.06 1.06a.75.75 0 0 1 0 1.061ZM7.757 7.757a.75.75 0 0 1-1.06 0L5.636 6.697A.75.75 0 1 1 6.697 5.636l1.06 1.06a.75.75 0 0 1 0 1.061Zm10.607-2.121a.75.75 0 0 1 0 1.06l-1.06 1.061a.75.75 0 0 1-1.061-1.06l1.06-1.061a.75.75 0 0 1 1.061 0ZM7.757 16.243a.75.75 0 0 1 0 1.06l-1.06 1.061a.75.75 0 0 1-1.061-1.06l1.06-1.061a.75.75 0 0 1 1.061 0Z" clip-rule="evenodd"/></svg>
+          <svg id="iconMoon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-5 dark:hidden"><path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 0 1 .162.819A8.25 8.25 0 1 0 21.463 13.31a.75.75 0 0 1 .981.98A9.75 9.75 0 1 1 8.71 1.556a.75.75 0 0 1 .819.162Z" clip-rule="evenodd"/></svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="flex-1">
     <!-- Introduccion sobre la huella de carbono -->
-    <section class="mb-8 font-bold text-center " id="introduccion"> 
-        <p> Qué es la huella de carbono? <br>
-            La huella de carbono es la cantidad total de gases de efecto invernadero (GEI) que son emitidos directa o indirectamente por actividades humanas, expresada en toneladas de dióxido de carbono equivalente (tCO2e). <br>
-            Estos gases incluyen dióxido de carbono (CO2), metano (CH4), óxido nitroso (N2O) y otros GEI que contribuyen al calentamiento global y al cambio climático. <br>
-            La huella de carbono se utiliza para medir el impacto ambiental de individuos, organizaciones, productos y servicios, y es una herramienta importante para identificar áreas donde se pueden reducir las emisiones de GEI y mitigar el cambio climático.
+    <section id="introduccion" class="container max-w-3xl mt-6">
+      <div class="rounded-2xl bg-white/80 dark:bg-gray-800/70 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700 p-5 md:p-6">
+        <p class="font-medium leading-relaxed text-gray-800 dark:text-gray-100">
+          <span class="font-bold">¿Qué es la huella de carbono?</span><br>
+          La huella de carbono es la cantidad total de gases de efecto invernadero (GEI) emitidos directa o indirectamente por actividades humanas, expresada en toneladas de dióxido de carbono equivalente (tCO₂e). Incluye CO₂, CH₄, N₂O y otros GEI que contribuyen al calentamiento global. Es una herramienta clave para medir impacto y detectar oportunidades de reducción.
         </p>
+      </div>
     </section>
 
     <!-- Boton para calcular la huella -->
-      <div class="text-center">
-        <button id="botonCalcular" type="button" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
-          Calcular Huella
-        </button>
-      </div>
+    <div class="container max-w-3xl mt-6 text-center">
+      <button id="botonCalcular" type="button" class="inline-flex items-center justify-center rounded-xl bg-green-800 px-6 py-2.5 text-white font-semibold shadow hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 border-4 border-black-700">
+        Calcular Huella
+      </button>
+    </div>
 
     <!-- Formulario que se hara visible a medida que se necesite en el calculo-->
-    <form class="space-y-8 " id="formulario">
-
+    <form id="formulario" class="container max-w-3xl mt-8 space-y-8">
+  
       <!-- Datos personales -->
       <section id="datosPersonales" class="section hidden">
-        <h2 class="text-xl font-semibold mb-4">
-          Datos Personales
-        </h2>
-
+        <h2 class="text-xl md:text-2xl font-semibold mb-4">Datos Personales</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <!-- Pais del usuario -->
           <div>
-            <label for="pais" class="block mb-2">País</label>
-            <select class="w-full border rounded-lg p-2" name="pais" id="pais">
+            <label for="pais" class="block text-sm font-medium mb-1">País</label>
+            <select id="pais" name="pais" class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 p-2 focus:outline-none focus:ring-2 focus:ring-green-500">
               <option>Argentina</option>
               <option>Brasil</option>
               <option>Chile</option>
@@ -49,17 +91,15 @@
               <option>Otro</option>
             </select>
           </div>
-
           <!-- Nombre del usuario -->
           <div>
-            <label for="nombre" class="block mb-2">Nombre</label>
-            <input type="text" class="w-full border rounded-lg p-2" placeholder="Ingresa tu nombre" name="nombre" id="nombre" required>
+            <label for="nombre" class="block text-sm font-medium mb-1">Nombre</label>
+            <input id="nombre" name="nombre" type="text" required placeholder="Ingresa tu nombre" class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 p-2 focus:outline-none focus:ring-2 focus:ring-green-500" />
           </div>
-          
           <!-- Tipo de casa del usuario -->
           <div class="md:col-span-2">
-            <label for="tipoCasa" class="block mb-2">Tipo de casa</label>
-            <select class="w-full border rounded-lg p-2" name="tipoCasa" id="tipoCasa">
+            <label for="tipoCasa" class="block text-sm font-medium mb-1">Tipo de casa</label>
+            <select id="tipoCasa" name="tipoCasa" class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 p-2 focus:outline-none focus:ring-2 focus:ring-green-500">
               <option>Casa</option>
               <option>Departamento</option>
               <option>Casa rural</option>
@@ -72,65 +112,60 @@
 
       <!-- Transporte -->
       <section id="transporte" class="section hidden">
-        <h2 class="text-xl font-semibold mb-4">
-          Transporte
-        </h2>
-        
+        <h2 class="text-xl md:text-2xl font-semibold mb-4">Transporte</h2>
         <div class="space-y-4">
-          <div class="flex gap-2">
-
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
             <!-- Tipo de auto y km por semana -->
-            <label for="auto" class="block mb-2">Auto</label>
-              <div class="flex gap-2">
-              <select class="border rounded-lg p-2" name="auto" id="auto">
+            <div>
+              <label for="auto" class="block text-sm font-medium mb-1">Auto</label>
+              <select id="auto" name="auto" class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 p-2 focus:ring-2 focus:ring-green-500">
                 <option>Nafta</option>
                 <option>Gasoil</option>
                 <option>Eléctrico</option>
               </select>
-              <label for="kmAuto" class="block mb-2">km/semana</label>
-              <input type="number" class="border rounded-lg p-2 w-1/2" placeholder="Km/semana" name="kmAuto" id="kmAuto" value="0">
+            </div>
+            <div class="md:col-span-2">
+              <label for="kmAuto" class="block text-sm font-medium mb-1">Km/semana</label>
+              <input id="kmAuto" name="kmAuto" type="number" value="0" class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 p-2 focus:ring-2 focus:ring-green-500" />
             </div>
           </div>
-
           <!-- Tipo de moto y km por semana -->
-          <div>
-            <label for="moto/monopatin" class="block mb-2">Moto / Monopatín</label>
-            <div class="flex gap-2">
-              <select class="border rounded-lg p-2" name="moto/monopatin" id="moto/monopatin">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
+            <div>
+              <label for="moto/monopatin" class="block text-sm font-medium mb-1">Moto / Monopatín</label>
+              <select id="moto/monopatin" name="moto/monopatin" class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 p-2 focus:ring-2 focus:ring-green-500">
                 <option>Nafta</option>
                 <option>Eléctrico</option>
               </select>
-              <label for="kmMotoMono" class="block mb-2">km/semana</label>
-              <input type="number" class="border rounded-lg p-2 w-1/2" placeholder="Km/semana" name="kmMotoMono"  id="kmMotoMono" value="0">
+            </div>
+            <div class="md:col-span-2">
+              <label for="kmMotoMono" class="block text-sm font-medium mb-1">Km/semana</label>
+              <input id="kmMotoMono" name="kmMotoMono" type="number" value="0" class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 p-2 focus:ring-2 focus:ring-green-500" />
             </div>
           </div>
-
           <!-- Transporte público y bicicleta/caminar -->
           <div>
-            <label for="transportePublico" class="block mb-2">Transporte público (km/semana)</label>
-            <input type="number" class="border rounded-lg p-2 w-full" placeholder="0" name="transportePublico" id="transportePublico" value="0">
+            <label for="transportePublico" class="block text-sm font-medium mb-1">Transporte público (km/semana)</label>
+            <input id="transportePublico" name="transportePublico" type="number" value="0" class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 p-2 focus:ring-2 focus:ring-green-500" />
           </div>
           <div>
-            <label for="biciCaminar" class="block mb-2">Bicicleta / Caminar (km/semana)</label>
-            <input type="number" class="border rounded-lg p-2 w-full" placeholder="0" name="biciCaminar" id="biciCaminar" value="0">
+            <label for="biciCaminar" class="block text-sm font-medium mb-1">Bicicleta / Caminar (km/semana)</label>
+            <input id="biciCaminar" name="biciCaminar" type="number" value="0" class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 p-2 focus:ring-2 focus:ring-green-500" />
           </div>
         </div>
       </section>
 
       <!-- Viajes -->
       <section id="viajes" class="section hidden">
-        <h2 class="text-xl font-semibold mb-4">
-          Viajes
-        </h2>
-        
+        <h2 class="text-xl md:text-2xl font-semibold mb-4">Viajes</h2>
         <div class="space-y-4">
           <div>
-            <label for="numeroViajes" class="block mb-2">¿Cuántos viajes en avion hiciste en el último año?</label>
-            <input type="number" class="border rounded-lg p-2 w-full" placeholder="Número de viajes" value="0" name="numeroViajes" id="numeroViajes">
+            <label for="numeroViajes" class="block text-sm font-medium mb-1">¿Cuántos viajes en avión hiciste en el último año?</label>
+            <input id="numeroViajes" name="numeroViajes" type="number" value="0" class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 p-2 focus:ring-2 focus:ring-green-500" />
           </div>
           <div>
-            <label for ="tipoVuelo" class="block mb-2">Selecciona tipo de vuelo</label>
-            <select class="w-full border rounded-lg p-2" name="tipoVuelo" id="tipoVuelo">
+            <label for="tipoVuelo" class="block text-sm font-medium mb-1">Seleccioná tipo de vuelo</label>
+            <select id="tipoVuelo" name="tipoVuelo" class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 p-2 focus:ring-2 focus:ring-green-500">
               <option>Nacional corto (&lt; 1000 km)</option>
               <option>Nacional largo (1000-3000 km)</option>
               <option>Internacional (&lt; 5000 km)</option>
@@ -139,18 +174,15 @@
           </div>
         </div>
       </section>
-           
-      <!-- Hábitos alimenticios -->
+
+      <!-- Habitos alimenticios -->
       <section id="alimentacion" class="section hidden">
-        <h2 class="text-xl font-semibold mb-4">
-          Hábitos Alimenticios
-        </h2>
-        
+        <h2 class="text-xl md:text-2xl font-semibold mb-4">Hábitos Alimenticios</h2>
         <div class="space-y-4">
           <!-- Preguntas sobre alimentación -->
           <div>
-            <label for="carnesRojas" class="block mb-2">¿Cuántas veces por semana consumes carnes rojas?</label>
-            <select class="w-full border rounded-lg p-2" name="carnesRojas" id="carnesRojas">
+            <label for="carnesRojas" class="block text-sm font-medium mb-1">¿Cuántas veces por semana consumís carnes rojas?</label>
+            <select id="carnesRojas" name="carnesRojas" class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 p-2 focus:ring-2 focus:ring-green-500">
               <option>Nunca</option>
               <option>1 o 2</option>
               <option>3 o 4</option>
@@ -159,29 +191,29 @@
           </div>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label for="lacteos" class="block mb-2">¿Consumes productos lácteos?</label>
-              <select class="w-full border rounded-lg p-2" name="lacteos" id="lacteos">
+              <label for="lacteos" class="block text-sm font-medium mb-1">¿Consumís productos lácteos?</label>
+              <select id="lacteos" name="lacteos" class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 p-2 focus:ring-2 focus:ring-green-500">
                 <option>Sí</option>
                 <option>No</option>
               </select>
             </div>
             <div>
-              <label for ="frutasVerduras" class="block mb-2">¿Consumes frutas y verduras de temporada?</label>
-              <select class="w-full border rounded-lg p-2" name="frutasVerduras" id="frutasVerduras">
+              <label for="frutasVerduras" class="block text-sm font-medium mb-1">¿Consumís frutas y verduras de temporada?</label>
+              <select id="frutasVerduras" name="frutasVerduras" class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 p-2 focus:ring-2 focus:ring-green-500">
                 <option>Sí</option>
                 <option>No</option>
               </select>
             </div>
             <div>
-              <label for="alimentosOrganicos" class="block mb-2">¿Consumes alimentos orgánicos/locales?</label>
-              <select class="w-full border rounded-lg p-2" name="alimentosOrganicos" id="alimentosOrganicos">
+              <label for="alimentosOrganicos" class="block text-sm font-medium mb-1">¿Consumís alimentos orgánicos/locales?</label>
+              <select id="alimentosOrganicos" name="alimentosOrganicos" class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 p-2 focus:ring-2 focus:ring-green-500">
                 <option>Sí</option>
                 <option>No</option>
               </select>
             </div>
             <div>
-              <label for="pescado" class="block mb-2">¿Consumes pescado?</label>
-              <select class="w-full border rounded-lg p-2" name="pescado" id="pescado">
+              <label for="pescado" class="block text-sm font-medium mb-1">¿Consumís pescado?</label>
+              <select id="pescado" name="pescado" class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 p-2 focus:ring-2 focus:ring-green-500">
                 <option>Nunca</option>
                 <option>1 a 2 veces</option>
                 <option>3 a 4 veces</option>
@@ -191,17 +223,14 @@
           </div>
         </div>
       </section>
-      
-      <!-- Niños y mascotas -->
-      <section id="ninosMascotas" class="section hidden">
-        <h2 class="text-xl font-semibold mb-4">
-          Niños y Mascotas
-        </h2>
 
+      <!-- Niños y Mascotas -->
+      <section id="ninosMascotas" class="section hidden">
+        <h2 class="text-xl md:text-2xl font-semibold mb-4">Niños y Mascotas</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label for="ninos" class="block mb-2">¿Cuántos menores de edad viven contigo?</label>
-            <select class="w-full border rounded-lg p-2" name="ninos" id="ninos">
+            <label for="ninos" class="block text-sm font-medium mb-1">¿Cuántos menores de edad viven con vos?</label>
+            <select id="ninos" name="ninos" class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 p-2 focus:ring-2 focus:ring-green-500">
               <option>0</option>
               <option>1</option>
               <option>2</option>
@@ -209,8 +238,8 @@
             </select>
           </div>
           <div>
-            <label for="mascotas" class="block mb-2">¿Cuántas mascotas tienes?</label>
-            <select class="w-full border rounded-lg p-2" name="mascotas" id="mascotas">
+            <label for="mascotas" class="block text-sm font-medium mb-1">¿Cuántas mascotas tenés?</label>
+            <select id="mascotas" name="mascotas" class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 p-2 focus:ring-2 focus:ring-green-500">
               <option>0</option>
               <option>1</option>
               <option>2</option>
@@ -219,18 +248,18 @@
           </div>
         </div>
       </section>
-     
+
       <!-- Consumo de energía -->
-      <section id="energia" class=" section hidden">
-        <h2 class="text-xl font-semibold mb-4">Consumo de Energía</h2>
+      <section id="energia" class="section hidden">
+        <h2 class="text-xl md:text-2xl font-semibold mb-4">Consumo de Energía</h2>
         <div class="space-y-4">
           <div>
-            <label for="consumoElectrico" class="block mb-2">¿Cuál es tu consumo eléctrico mensual aprox? (kWh)</label>
-            <input type="number" class="w-full border rounded-lg p-2" placeholder="Ej: 200" value="0" name="consumoElectrico" id="consumoElectrico">
+            <label for="consumoElectrico" class="block text-sm font-medium mb-1">Consumo eléctrico mensual aprox (kWh)</label>
+            <input id="consumoElectrico" name="consumoElectrico" type="number" value="0" class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 p-2 focus:ring-2 focus:ring-green-500" />
           </div>
           <div>
-            <label for="calefaccion" class="block mb-2">¿Qué tipo de calefacción usas?</label>
-            <select class="w-full border rounded-lg p-2" name="calefaccion" id="calefaccion">
+            <label for="calefaccion" class="block text-sm font-medium mb-1">Tipo de calefacción</label>
+            <select id="calefaccion" name="calefaccion" class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 p-2 focus:ring-2 focus:ring-green-500">
               <option>Gas natural</option>
               <option>Eléctrica</option>
               <option>Leña</option>
@@ -239,58 +268,58 @@
           </div>
         </div>
       </section>
-           
+
       <!-- Basura -->
       <section id="basura" class="section hidden">
-        <h2 class="text-xl font-semibold mb-4">Basura</h2>
+        <h2 class="text-xl md:text-2xl font-semibold mb-4">Basura</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label for="reciclas" class="block mb-2">¿Reciclas regularmente tus residuos?</label>
-            <select class="w-full border rounded-lg p-2" name="reciclas" id="reciclas">
+            <label for="reciclas" class="block text-sm font-medium mb-1">¿Reciclás regularmente?</label>
+            <select id="reciclas" name="reciclas" class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 p-2 focus:ring-2 focus:ring-green-500">
               <option>Sí</option>
               <option>No</option>
             </select>
           </div>
           <div>
-            <label for="aguaEmbotellada" class="block mb-2">¿Compras agua embotellada?</label>
-            <select class="w-full border rounded-lg p-2" name="aguaEmbotellada" id="aguaEmbotellada">
+            <label for="aguaEmbotellada" class="block text-sm font-medium mb-1">¿Comprás agua embotellada?</label>
+            <select id="aguaEmbotellada" name="aguaEmbotellada" class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 p-2 focus:ring-2 focus:ring-green-500">
               <option>Sí</option>
               <option>No</option>
             </select>
           </div>
         </div>
       </section>
-         
+
       <!-- Ropa -->
       <section id="ropa" class="section hidden">
-        <h2 class="text-xl font-semibold mb-4">Ropa</h2>
-        <label for="ropaNueva" class="block mb-2">¿Compras ropa nueva cada mes?</label>
-        <select class="w-full border rounded-lg p-2" name="ropaNueva" id="ropaNueva">
+        <h2 class="text-xl md:text-2xl font-semibold mb-4">Ropa</h2>
+        <label for="ropaNueva" class="block text-sm font-medium mb-1">¿Comprás ropa nueva cada mes?</label>
+        <select id="ropaNueva" name="ropaNueva" class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 p-2 focus:ring-2 focus:ring-green-500">
           <option>Sí</option>
           <option>No</option>
           <option>Pocas veces</option>
           <option>Frecuentemente</option>
         </select>
       </section>
-          
+
       <!-- Agua -->
-      <section class="section hidden" id="agua">
-        <h2 class="text-xl font-semibold mb-4">Agua</h2>
+      <section id="agua" class="section hidden">
+        <h2 class="text-xl md:text-2xl font-semibold mb-4">Agua</h2>
         <div class="space-y-4">
           <div>
-            <label for="minutosDucha" class="block mb-2">¿Cuántos minutos dura tu ducha diaria en promedio?</label>
-            <input type="number" class="w-full border rounded-lg p-2" placeholder="Ej: 10" name="minutosDucha" id="minutosDucha" value="0">
+            <label for="minutosDucha" class="block text-sm font-medium mb-1">¿Cuántos minutos dura tu ducha diaria (promedio)?</label>
+            <input id="minutosDucha" name="minutosDucha" type="number" value="0" class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 p-2 focus:ring-2 focus:ring-green-500" />
           </div>
           <div>
-            <label for="lavados" class="block mb-2">¿Utilizas el lavarropas o lavavajillas más de 3 veces por semana?</label>
-            <select class="w-full border rounded-lg p-2" name="lavados" id="lavados">
+            <label for="lavados" class="block text-sm font-medium mb-1">¿Usás lavarropas o lavavajillas más de 3 veces/semana?</label>
+            <select id="lavados" name="lavados" class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 p-2 focus:ring-2 focus:ring-green-500">
               <option>Sí</option>
               <option>No</option>
             </select>
           </div>
           <div>
-            <label for="aguaCorriendo" class="block mb-2">¿Dejas correr el agua mientras lavas platos o dientes?</label>
-            <select class="w-full border rounded-lg p-2" name="aguaCorriendo" id="aguaCorriendo">
+            <label for="aguaCorriendo" class="block text-sm font-medium mb-1">¿Dejás correr el agua al lavar platos o dientes?</label>
+            <select id="aguaCorriendo" name="aguaCorriendo" class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 p-2 focus:ring-2 focus:ring-green-500">
               <option>Sí</option>
               <option>No</option>
             </select>
@@ -299,36 +328,32 @@
       </section>
 
       <!-- Boton siguiente que se hara visible a medida que se necesite -->
-      <div id="divNextButton" class="text-center">
-        <button id="nextButton" type="button" class=" hidden bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
-            Siguiente
-        </button>
-      </div>
-      
-        <!-- Boton atras que se hara visible a medida que se necesite -->
-      <div id="divBackButton" class="text-center">
-        <button id="backButton" type="button" class=" hidden bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
-            Atras
-        </button>
+      <div id="divBackButton" class="flex items-center justify-between gap-4">
+        <button id="backButton" type="button" class="hidden rounded-xl bg-green-600 text-white px-5 py-2 font-medium hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-green-300 border-4 border-white">
+     Atrás </button>
+     <div id="divNextButton" class="flex-1"></div>
+     <button id="nextButton" type="button" class="hidden rounded-xl bg-green-600 text-white px-6 py-2 font-semibold shadow hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-green-300 border-4 border-white">
+    Siguiente </button>
       </div>
 
     </form>
 
-    <!-- Resultado que se hara visible a medida que se necesite -->
-    <div id="resultado" class="hidden text-center mt-8">
-      <h2 class="text-2xl font-bold mb-4" id="huellaNombre"></h2>
-      <p id="huellaValor" class="text-xl mb-4"></p>
-      <p id="mensajePersonalizado" class="text-lg">bla bla bla</p>
-      <button id="reiniciarBtn" class="mt-4 bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
-        Reiniciar
-      </button>
-    </div>
+    <!-- Resultado -->
+    <section class="container max-w-3xl">
+      <div id="resultado" class="hidden text-center mt-10">
+        <h2 class="text-2xl md:text-3xl font-bold mb-3" id="huellaNombre"></h2>
+        <p id="huellaValor" class="text-xl md:text-2xl mb-4"></p>
+        <p id="mensajePersonalizado" class="text-base md:text-lg"></p>
+        <button id="reiniciarBtn" class="mt-6 rounded-xl bg-green-600 px-6 py-2 text-white font-semibold hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400">Reiniciar</button>
+      </div>
+    </section>
+  </main>
 
-    <!-- Footer -->
-    <footer class="text-center py-4 text-gray-600 text-sm font-semibold bg-green-400 mt-10" > @copy HUELLA DE CARBONO by CONEJERO-MORA </footer>
+  <!-- Footer -->
+  <footer class="mt-12 border-t border-gray-200 dark:border-gray-800 bg-green-400/90 dark:bg-green-800/80">
+    <div class="container max-w-5xl text-center py-4 text-sm font-semibold text-gray-900 dark:text-gray-100">© HUELLA DE CARBONO by CONEJERO-MORA</div>
+  </footer>
 
-    <!-- Script -->
-    <script src="script.js"></script>
-
+  <script src="script.js"></script>
 </body>
 </html>

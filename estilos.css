@@ -1,0 +1,66 @@
+body {
+  font-family: 'Rubik', sans-serif;
+  background-image: url("imagenes/imagen\ de\ fondo.jpg"); 
+  background-size: cover;       
+  background-position: center;  
+  background-repeat: no-repeat; 
+  background-attachment: fixed; 
+  min-height: 100vh;            
+}
+
+/* Formulario */
+.section {
+  background-color: rgba(255, 255, 255, 0.7); 
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #111; 
+}
+
+/* Modo oscuro */
+.dark .section {
+  background-color: rgba(0, 0, 0, 0.6); 
+  color: #fff; 
+}
+
+/* Inputs transparentes */
+.section input,
+.section select,
+.section textarea {
+  background-color: rgba(255, 255, 255, 0.8); 
+  color: #111;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+
+/* Inputs en oscuro */
+.dark .section input,
+.dark .section select,
+.dark .section textarea {
+  background-color: rgba(0, 0, 0, 0.6); 
+  color: #fff;
+  border: 1px solid #555;
+}
+
+/* Texto modo claro */
+#resultado {
+  color: #fff; 
+}
+
+/* En modo oscuro */
+.dark #resultado {
+  color: #fff; 
+}
+#resultado {
+  background-color: rgba(255, 255, 255, 0.75); 
+  padding: 1.5rem;
+  color: #111;
+}
+
+/* Oscuro */
+.dark #resultado {
+  background-color: rgba(0, 0, 0, 0.6); 
+  color: #fff;
+}
+

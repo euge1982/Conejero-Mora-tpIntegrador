@@ -295,3 +295,19 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 });
+    // tema claro/oscuro 
+const btnToggle = document.getElementById('themeToggle');
+const label = document.getElementById('themeLabel');
+
+btnToggle?.addEventListener('click', () => {
+  const root = document.documentElement;
+  const isDark = root.classList.toggle('dark');
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  if (label) label.textContent = isDark ? 'Claro' : 'Oscuro';
+});
+
+// Refresca la etiqueta en la carga
+document.addEventListener('DOMContentLoaded', () => {
+  const isDark = document.documentElement.classList.contains('dark');
+  if (label) label.textContent = isDark ? 'Claro' : 'Oscuro';
+});
