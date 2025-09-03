@@ -44,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
       case "Nafta": huellaTotal += kmAuto * 0.2; break;
       case "Gasoil": huellaTotal += kmAuto * 0.18; break;
       case "Electrico": huellaTotal += kmAuto * 0.05; break;
-      //default: huellaTotal += 0; break;
     };
 
     // Moto/ Monopatin
@@ -53,7 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
     switch (tipoMoto) {
       case "Nafta": huellaTotal += kmMoto * 0.11; break;
       case "Electrico": huellaTotal += kmMoto * 0.03; break;
-      //default: huellaTotal += 0; break;
    };
 
     // Transporte publico y bicicleta/caminar
@@ -67,11 +65,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const viajesEnAvion = parseInt(respuestas["numeroViajes"]) || 0;
     const tipoVuelo = respuestas["tipoVuelo"];
     switch (tipoVuelo) {
-      case "Nacional corto (< 1000 km)": huellaTotal += viajesEnAvion * 100; break;
-      case "Nacional largo (1000-3000 km)": huellaTotal += viajesEnAvion * 200; break;
-      case "Internacional (< 5000 km)": huellaTotal += viajesEnAvion * 1000; break;
-      case "Internacional largo (> 5000 km)": huellaTotal += viajesEnAvion * 2000; break;
-      //default: huellaTotal += 0; break;
+      // Los valores estan en kgCO2e por viaje, se dividen por 52 para anualizar
+      case "Nacional corto (< 1000 km)": huellaTotal += viajesEnAvion * 100/52; break;
+      case "Nacional largo (1000-3000 km)": huellaTotal += viajesEnAvion * 200/52; break;
+      case "Internacional (< 5000 km)": huellaTotal += viajesEnAvion * 1000/52; break;
+      case "Internacional largo (> 5000 km)": huellaTotal += viajesEnAvion * 2000/52; break;
     };
 
     // ALIMENTACION
@@ -103,7 +101,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ENERGIA
     const consumoElectrico = parseFloat(respuestas["consumoElectrico"]) || 0;
-    huellaTotal += consumoElectrico * 0.2;
+    huellaTotal += consumoElectrico * 0.2/4; // se semanaliza el resultado
+
+    // CALEFACCION
     const calefaccion = respuestas["calefaccion"];
     switch(calefaccion){
       case "Gas natural": huellaTotal += 10; break;
@@ -119,14 +119,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // ROPA
     const ropa = respuestas["ropaNueva"];
     switch(ropa){
-      case "Sí": huellaTotal += 5; break;
-      case "Pocas veces": huellaTotal += 2; break;
-      case "Frecuentemente": huellaTotal += 8; break;
+      // Los valores estan en kgCO2e por persona, se dividen por 4 para anualizar
+      case "Sí": huellaTotal += 5/4; break;
+      case "Pocas veces": huellaTotal += 2/4; break;
+      case "Frecuentemente": huellaTotal += 8/4; break;
     };
 
     // AGUA
     const minutosDucha = parseInt(respuestas["minutosDucha"]) || 0;
-    huellaTotal += minutosDucha * 0.2;
+    huellaTotal += minutosDucha * 0.2*7; // se asume 7 duchas por semana
     if(respuestas["lavados"] === "Sí") huellaTotal += 2;
     if(respuestas["aguaCorriendo"] === "Sí") huellaTotal += 1;
 
