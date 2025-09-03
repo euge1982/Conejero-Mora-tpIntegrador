@@ -68,7 +68,7 @@
 
     <!-- Boton para calcular la huella -->
     <div class="container max-w-3xl mt-6 text-center">
-      <button id="botonCalcular" type="button" class="inline-flex items-center justify-center rounded-xl bg-green-800 px-6 py-2.5 text-white font-semibold shadow hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 border-4 border-black-700">
+      <button id="botonCalcular" type="button" class="rounded-xl bg-green-600 text-white px-6 py-2 font-semibold shadow hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-green-300 border-4 border-white dark:border-black">
         Calcular Huella
       </button>
     </div>
@@ -336,17 +336,22 @@
         <button id="nextButton" type="button" class="hidden rounded-xl bg-green-600 text-white px-6 py-2 font-semibold shadow hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-green-300 border-4 border-white">
           Siguiente 
         </button>
+        <button id="backButton" type="button" class="hidden rounded-xl bg-green-600 text-white px-5 py-2 font-medium hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-green-300 border-4 border-white dark:border-black">
+     Atrás </button>
+     <div id="divNextButton" class="flex-1"></div>
+     <button id="nextButton" type="button" class="hidden rounded-xl bg-green-600 text-white px-6 py-2 font-semibold shadow hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-green-300 border-4 border-white dark:border-black">
+    Siguiente </button>
       </div>
 
     </form>
 
     <!-- Resultado -->
     <section class="container max-w-3xl">
-      <div id="resultado" class="hidden text-center mt-10">
+      <div id="resultado" class="hidden text-center mt-10 rounded-xl p-6 mb-6 bg-green-500/70 text-gray-900 dark:bg-green-700/70 dark:text-white">
         <h2 class="text-2xl md:text-3xl font-bold mb-3" id="huellaNombre"></h2>
         <p id="huellaValor" class="text-xl md:text-2xl mb-4"></p>
         <p id="mensajePersonalizado" class="text-base md:text-lg"></p>
-        <button id="reiniciarBtn" class="mt-6 rounded-xl bg-green-600 px-6 py-2 text-white font-semibold hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400">Reiniciar</button>
+        <button id="reiniciarBtn" class="mt-6 rounded-xl bg-green-600 px-6 py-2 text-white font-semibold hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 border-4 border-white dark:border-black">Reiniciar</button>
       </div>
     </section>
   </main>
