@@ -15,37 +15,19 @@
   <script src="https://cdn.tailwindcss.com"></script>
   
   <!--configuracion para modo claro/oscuro-->
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          container: { center: true, padding: '1rem' },
-        },
-      },
-    };
-  </script>
-  <!-- Maneja el modo claro/oscuro cuando carga la pagina -->
-  <script>
-    (function () {
-      const saved = localStorage.getItem('theme');
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      if (saved === 'dark' || (!saved && prefersDark)) {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
-    })();
-  </script>
+  <script src="script2.js"></script>
 </head>
 <body class="min-h-screen flex flex-col bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
-  <!-- NAV -->
+  
+  <!-- Header -->
   <header class="border-b border-gray-200 dark:border-gray-800 bg-green-600 text-white dark:bg-green-700">
+    
+    <!-- Nav -->
     <nav class="container max-w-5xl flex items-center justify-between py-3">
       <h1 class="text-lg md:text-2xl font-extrabold tracking-wide">CALCULA TU HUELLA 👣</h1>
       <div class="flex items-center gap-3">
        
-        <!-- Boton para cambiar el modo-->
+        <!-- Boton para cambiar el modo -->
         <button id="themeToggle" type="button" class="inline-flex items-center gap-2 rounded-xl bg-white/10 px-3 py-1.5 text-sm font-semibold ring-1 ring-white/20 hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-600 focus:ring-white">
           <span class="hidden sm:inline" id="themeLabel">Oscuro</span>
           <svg id="iconSun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-5 hidden dark:inline"><path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z"/><path fill-rule="evenodd" d="M12 2.25a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75Zm0 16.5a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0V19.5a.75.75 0 0 1 .75-.75Zm9-7.5a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5H20.25a.75.75 0 0 1 .75.75ZM6 12a.75.75 0 0 1-.75.75H3.75a.75.75 0 0 1 0-1.5H5.25A.75.75 0 0 1 6 12Zm12.364 6.364a.75.75 0 0 1-1.06 0l-1.06-1.06a.75.75 0 0 1 1.06-1.061l1.06 1.06a.75.75 0 0 1 0 1.061ZM7.757 7.757a.75.75 0 0 1-1.06 0L5.636 6.697A.75.75 0 1 1 6.697 5.636l1.06 1.06a.75.75 0 0 1 0 1.061Zm10.607-2.121a.75.75 0 0 1 0 1.06l-1.06 1.061a.75.75 0 0 1-1.061-1.06l1.06-1.061a.75.75 0 0 1 1.061 0ZM7.757 16.243a.75.75 0 0 1 0 1.06l-1.06 1.061a.75.75 0 0 1-1.061-1.06l1.06-1.061a.75.75 0 0 1 1.061 0Z" clip-rule="evenodd"/></svg>
@@ -56,6 +38,7 @@
   </header>
 
   <main class="flex-1">
+
     <!-- Introduccion sobre la huella de carbono -->
     <section id="introduccion" class="container max-w-3xl mt-6">
       <div class="rounded-2xl bg-white/80 dark:bg-gray-800/70 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700 p-5 md:p-6">
@@ -91,11 +74,13 @@
               <option>Otro</option>
             </select>
           </div>
+
           <!-- Nombre del usuario -->
           <div>
             <label for="nombre" class="block text-sm font-medium mb-1">Nombre</label>
-            <input id="nombre" name="nombre" type="text" required placeholder="Ingresa tu nombre" class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 p-2 focus:outline-none focus:ring-2 focus:ring-green-500" />
+            <input id="nombre" name="nombre" type="text"  placeholder="Ingresa tu nombre" class="w-full rounded-lg border border-gray-300 bg-white dark:border-gray-700 dark:bg-gray-900 p-2 focus:outline-none focus:ring-2 focus:ring-green-500" />
           </div>
+
           <!-- Tipo de casa del usuario -->
           <div class="md:col-span-2">
             <label for="tipoCasa" class="block text-sm font-medium mb-1">Tipo de casa</label>
@@ -115,6 +100,7 @@
         <h2 class="text-xl md:text-2xl font-semibold mb-4">Transporte</h2>
         <div class="space-y-4">
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
+
             <!-- Tipo de auto y km por semana -->
             <div>
               <label for="auto" class="block text-sm font-medium mb-1">Auto</label>
@@ -129,6 +115,7 @@
               <input id="kmAuto" name="kmAuto" type="number" value="0" class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 p-2 focus:ring-2 focus:ring-green-500" />
             </div>
           </div>
+
           <!-- Tipo de moto y km por semana -->
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
             <div>
@@ -143,6 +130,7 @@
               <input id="kmMotoMono" name="kmMotoMono" type="number" value="0" class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 p-2 focus:ring-2 focus:ring-green-500" />
             </div>
           </div>
+
           <!-- Transporte público y bicicleta/caminar -->
           <div>
             <label for="transportePublico" class="block text-sm font-medium mb-1">Transporte público (km/semana)</label>
@@ -155,7 +143,7 @@
         </div>
       </section>
 
-      <!-- Viajes -->
+      <!-- Viajes en avion -->
       <section id="viajes" class="section hidden">
         <h2 class="text-xl md:text-2xl font-semibold mb-4">Viajes</h2>
         <div class="space-y-4">
@@ -179,7 +167,8 @@
       <section id="alimentacion" class="section hidden">
         <h2 class="text-xl md:text-2xl font-semibold mb-4">Hábitos Alimenticios</h2>
         <div class="space-y-4">
-          <!-- Preguntas sobre alimentación -->
+
+          <!-- Preguntas sobre alimentacion -->
           <div>
             <label for="carnesRojas" class="block text-sm font-medium mb-1">¿Cuántas veces por semana consumís carnes rojas?</label>
             <select id="carnesRojas" name="carnesRojas" class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 p-2 focus:ring-2 focus:ring-green-500">
@@ -249,13 +238,13 @@
         </div>
       </section>
 
-      <!-- Consumo de energía -->
+      <!-- Consumo de energia -->
       <section id="energia" class="section hidden">
         <h2 class="text-xl md:text-2xl font-semibold mb-4">Consumo de Energía</h2>
         <div class="space-y-4">
           <div>
             <label for="consumoElectrico" class="block text-sm font-medium mb-1">Consumo eléctrico mensual aprox (kWh)</label>
-            <input id="consumoElectrico" name="consumoElectrico" type="number" value="0" class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 p-2 focus:ring-2 focus:ring-green-500" />
+            <input id="consumoElectrico" name="consumoElectrico" type="number" placeholder="Ingresa tu consumo electrico mensual" class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 p-2 focus:ring-2 focus:ring-green-500" class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 p-2 focus:ring-2 focus:ring-green-500" required/>
           </div>
           <div>
             <label for="calefaccion" class="block text-sm font-medium mb-1">Tipo de calefacción</label>
@@ -327,7 +316,7 @@
         </div>
       </section>
 
-      <!-- Boton siguiente que se hara visible a medida que se necesite -->
+      <!-- Boton siguiente y atras que se haran visibles a medida que se necesite -->
       <div id="divBackButton" class="flex justify-between w-full mt4">
         <button id="backButton" type="button" class="hidden rounded-xl bg-green-600 text-white px-5 py-2 font-medium hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-green-300 border-4 border-white">
           Atrás 
@@ -355,7 +344,7 @@
     <div class="container max-w-5xl text-center py-4 text-sm font-semibold text-gray-900 dark:text-gray-100">©2025 - HUELLA DE CARBONO by CONEJERO-MORA</div>
   </footer>
 
-  <!-- Script -->
+  <!-- Script del formulario y la logica -->
   <script src="script.js"></script>
 
 </body>

@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const huellaValor = document.getElementById('huellaValor');
   const mensajePersonalizado = document.getElementById('mensajePersonalizado');
   const huellaNombre = document.getElementById('huellaNombre');
+  const btnToggle = document.getElementById('themeToggle');
+  const label = document.getElementById('themeLabel');
 
   // Declaramos variables
   let current = 0;
@@ -42,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
       case "Nafta": huellaTotal += kmAuto * 0.2; break;
       case "Gasoil": huellaTotal += kmAuto * 0.18; break;
       case "Electrico": huellaTotal += kmAuto * 0.05; break;
-      default: huellaTotal += 0; break;
+      //default: huellaTotal += 0; break;
     };
 
     // Moto/ Monopatin
@@ -51,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     switch (tipoMoto) {
       case "Nafta": huellaTotal += kmMoto * 0.11; break;
       case "Electrico": huellaTotal += kmMoto * 0.03; break;
-      default: huellaTotal += 0; break;
+      //default: huellaTotal += 0; break;
    };
 
     // Transporte publico y bicicleta/caminar
@@ -69,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
       case "Nacional largo (1000-3000 km)": huellaTotal += viajesEnAvion * 200; break;
       case "Internacional (< 5000 km)": huellaTotal += viajesEnAvion * 1000; break;
       case "Internacional largo (> 5000 km)": huellaTotal += viajesEnAvion * 2000; break;
-      default: huellaTotal += 0; break;
+      //default: huellaTotal += 0; break;
     };
 
     // ALIMENTACION
@@ -84,6 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if(respuestas["lacteos"] === "Sí") huellaTotal += 2;
     if(respuestas["frutasVerduras"] === "No") huellaTotal += 2;
     if(respuestas["alimentosOrganicos"] === "No") huellaTotal += 2;
+    
     const pescado = respuestas["pescado"];
     switch(pescado){
       case "Nunca": huellaTotal += 0; break;
@@ -106,6 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
       case "Gas natural": huellaTotal += 10; break;
       case "Eléctrica": huellaTotal += 20; break;
       case "Leña": huellaTotal += 5; break;
+      default: huellaTotal += 0; break;
     };
 
     // BASURA
@@ -294,20 +298,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   });
 
-});
-    // tema claro/oscuro 
-const btnToggle = document.getElementById('themeToggle');
-const label = document.getElementById('themeLabel');
+  // CARGA EL TEMA GUARDADO EN LOCALSTORAGE
+  if (btnToggle){
+    btnToggle.addEventListener('click', () => {
+      const root = document.documentElement;
+      const isDark = root.classList.toggle('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      if (label) label.textContent = isDark ? 'Claro' : 'Oscuro';
+    });
+  }
 
-btnToggle?.addEventListener('click', () => {
-  const root = document.documentElement;
-  const isDark = root.classList.toggle('dark');
-  localStorage.setItem('theme', isDark ? 'dark' : 'light');
-  if (label) label.textContent = isDark ? 'Claro' : 'Oscuro';
-});
+  // Refresca la etiqueta en la carga
+  if (label) label.textContent = document.documentElement.classList.contains('dark') ? 'Claro' : 'Oscuro';
 
-// Refresca la etiqueta en la carga
-document.addEventListener('DOMContentLoaded', () => {
-  const isDark = document.documentElement.classList.contains('dark');
-  if (label) label.textContent = isDark ? 'Claro' : 'Oscuro';
 });
