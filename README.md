@@ -1,8 +1,3 @@
-Perfecto 🚀 acá tenés tu `README.md` ya armado en formato **Markdown**, técnico y completo para tu proyecto en **HTML + CSS + JavaScript**:
-
----
-
-````markdown
 # 🌍 Calculadora de Huella de Carbono
 
 ## 📌 Descripción  
