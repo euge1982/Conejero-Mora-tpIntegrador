@@ -27,8 +27,8 @@ Incluye:
 ├── script2.js          # Configuración de tema (claro/oscuro)
 └── imagenes/           # Carpeta con imágenes y capturas
     ├── imagen de fondo.jpg
-    ├── captura1.png
-    └── imagen.png
+    ├── Inicio.png
+    └── Resultado.png
 ````
 
 ---
