@@ -146,11 +146,3 @@ btnToggle.addEventListener('click', () => {
 
 Este proyecto se distribuye bajo la licencia MIT.
 Eres libre de usarlo, modificarlo y compartirlo citando la autoría.
-
-```
-
----
-
-¿Querés que además te prepare un **README corto en inglés** (por si lo subís a GitHub y lo ven otros devs) o lo dejamos solo en español?
-```
-
